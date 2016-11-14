@@ -21,7 +21,7 @@ public class RotateWall : MonoBehaviour {
             transform.Rotate(new Vector3(0, 0, 90));
             if(transform.tag == "BouncyObject")
             {
-                transform.tag = "NonBouncyObject";
+                transform.tag = "Enemy";
             }
             else
             {
