@@ -9,7 +9,7 @@ public class BounceScript3D : MonoBehaviour {
     public Vector3[] patrolPoints;
 
     public float rotationSpeed = 5;
-
+    public Transform BoomOnTheWall;
     public float bouncingSpeed = 10;
     public int bouncingDirection = 1;
 
@@ -161,6 +161,7 @@ public class BounceScript3D : MonoBehaviour {
                 bouncingDirection *= -1;
 
                 GetComponent<AudioSource>().PlayOneShot(bipSound);
+                Instantiate(BoomOnTheWall,transform.position, Quaternion.identity);
 
                 Vibration.Vibrate(10);
 
