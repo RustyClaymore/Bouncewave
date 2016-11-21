@@ -27,8 +27,11 @@ public class UIManager : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        active = false;
-        levelSelectPos = levelSelect.transform.position;
+        if(SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            active = false;
+            levelSelectPos = levelSelect.transform.position;
+        }
     }
 
     public void LevelSelect()
@@ -95,6 +98,17 @@ public class UIManager : MonoBehaviour {
     public void PlayLevel()
     {
         SceneManager.LoadScene(levelNum);
+    }
+
+    public void Reload()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void Nextlevel()
+    {
+        if(SceneManager.GetActiveScene().buildIndex < 15)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     // Update is called once per frame
