@@ -15,6 +15,14 @@ public class UIManager : MonoBehaviour {
     public GameObject levelSelectPanelOpenRef;
     public GameObject levelSelectPanelCloseRef;
 
+    public GameObject AsPanel;
+    public GameObject BsPanel;
+    public GameObject CsPanel;
+    public GameObject AsOpenRef;
+    public GameObject BsOpenRef;
+    public GameObject CsOpenRef;
+    public GameObject ClosedRef;
+
     public GameObject LevelInfo;
     public GameObject LevelInfoOpenRef;
     public GameObject LevelInfoCloseRef;
@@ -22,7 +30,7 @@ public class UIManager : MonoBehaviour {
     public Text levelText;
     public int levelNum;
 
-    public Scene[] GameLevels;
+    public GameObject EndLevelOverlay;
 
     // Use this for initialization
     void Start()
@@ -58,16 +66,32 @@ public class UIManager : MonoBehaviour {
     void SlideLevelsIn()
     {
         if (active)
-        {
+        { 
             levelSelectPanel.SetActive(active);
             Debug.Log("triggered");
-            iTween.MoveTo(levelSelectPanel, levelSelectPanelOpenRef.transform.position, 0.5f);
+            iTween.MoveTo(levelSelectPanel, levelSelectPanelOpenRef.transform.position, 0.35f);
+            Invoke("SlideLettersDown", .36f);
         }
         else
         {
-            iTween.MoveTo(levelSelectPanel, levelSelectPanelCloseRef.transform.position, 0.5f);
-            Invoke("Deactivate", 0.4f);
+            iTween.MoveTo(AsPanel, ClosedRef.transform.position, 0.25f);
+            iTween.MoveTo(BsPanel, ClosedRef.transform.position, 0.5f);
+            iTween.MoveTo(CsPanel, ClosedRef.transform.position, 0.75f);
+            Invoke("CloseLevels", 0.75f);
         } 
+    }
+
+    void SlideLettersDown()
+    {
+        iTween.MoveTo(AsPanel, AsOpenRef.transform.position, 0.5f);
+        iTween.MoveTo(BsPanel, BsOpenRef.transform.position, 0.75f);
+        iTween.MoveTo(CsPanel, CsOpenRef.transform.position, 1f);
+    }
+
+    void CloseLevels()
+    {
+        iTween.MoveTo(levelSelectPanel, levelSelectPanelCloseRef.transform.position, 0.5f);
+        Invoke("Deactivate", 0.4f);
     }
 
     void Deactivate()

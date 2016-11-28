@@ -206,6 +206,7 @@ public class BounceScript3D : MonoBehaviour {
     void EndLevel()
     {
         EndLevelOverlay.SetActive(true);
+        iTween.ScaleTo(EndLevelOverlay, new Vector3(1, 1, 1), 0.5f);
     }
 
     public bool GetGameOver()
