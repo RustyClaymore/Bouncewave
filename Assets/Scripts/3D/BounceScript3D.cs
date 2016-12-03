@@ -3,6 +3,17 @@ using System.Collections;
 using DG.Tweening;
 using UnityEngine.UI;
 
+
+//****************************************************************************
+// Project: Bounce.wav 
+// Script: BounceScript3D
+// Description: Script for the player bouncing behavior
+
+// Game URL: https://nightkenny.itch.io/bouncewav
+// Search Engine: https://google.com
+// Unity Scripting References: https://docs.unity3d.com/ScriptReference/
+//****************************************************************************
+
 public class BounceScript3D : MonoBehaviour {
 
     // ******************* PUBLIC **************************//
@@ -92,7 +103,7 @@ public class BounceScript3D : MonoBehaviour {
             bouncingActualCooldown -= Time.deltaTime;
 
         
-            transform.Rotate(new Vector3(0, 0, rotationSpeed) * Time.deltaTime);
+            transform.Rotate(new Vector3(0, rotationSpeed, 0) * Time.deltaTime);
        
 
             if (Input.anyKeyDown && !gameStarted)

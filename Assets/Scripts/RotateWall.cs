@@ -6,6 +6,8 @@ public class RotateWall : MonoBehaviour {
     public float durationBeforeRotate;
     private float currentDuration;
 
+    public LineRenderer[] lineRenderers;
+
 	// Use this for initialization
 	void Start () {
         currentDuration = durationBeforeRotate;
@@ -21,10 +23,18 @@ public class RotateWall : MonoBehaviour {
             transform.Rotate(new Vector3(0, 0, 90));
             if(transform.tag == "BouncyObject")
             {
+                for (int i = 0; i < lineRenderers.Length; i++)
+                {
+                    lineRenderers[i].material.SetColor("_EmissionColor", Color.red);
+                }
                 transform.tag = "Enemy";
             }
             else
             {
+                for (int i = 0; i < lineRenderers.Length; i++)
+                {
+                    lineRenderers[i].material.SetColor("_EmissionColor", Color.blue);
+                }
                 transform.tag = "BouncyObject";
             }
         }
