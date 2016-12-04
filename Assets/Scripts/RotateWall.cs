@@ -11,7 +11,22 @@ public class RotateWall : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         currentDuration = durationBeforeRotate;
-	}
+
+        if (transform.tag == "BouncyObject")
+        {
+            for (int i = 0; i < lineRenderers.Length; i++)
+            {
+                lineRenderers[i].material.SetColor("_EmissionColor", Color.blue);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < lineRenderers.Length; i++)
+            {
+                lineRenderers[i].material.SetColor("_EmissionColor", Color.red);
+            }
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
