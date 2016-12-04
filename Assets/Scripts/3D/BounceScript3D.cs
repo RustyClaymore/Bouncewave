@@ -46,6 +46,8 @@ public class BounceScript3D : MonoBehaviour {
     public AudioClip explosion;
     public AudioClip vortexSound;
 
+    public GameObject EndLevelOverlay;
+
     // ******************* PRIVATE **************************//
 
     private Camera mainCamera;
@@ -158,8 +160,8 @@ public class BounceScript3D : MonoBehaviour {
                 transform.localScale -= new Vector3(0.005f, 0.005f, 0);
         }
 
-        if (timeBeforeNextLevel >= cooldownBeforeNextLevel)
-            Application.LoadLevel(Application.loadedLevel + 1);
+        //if (timeBeforeNextLevel >= cooldownBeforeNextLevel)
+          //  Application.LoadLevel(Application.loadedLevel + 1);
     }
 
     void OnCollisionEnter(Collision collision)
@@ -208,7 +210,14 @@ public class BounceScript3D : MonoBehaviour {
             GetComponent<AudioSource>().PlayOneShot(vortexSound);
             enteredVortex = true;
             gameOver = true;
+            Invoke("EndLevel", 3);
         }
+    }
+
+    void EndLevel()
+    {
+        EndLevelOverlay.SetActive(true);
+        iTween.ScaleTo(EndLevelOverlay, new Vector3(1, 1, 1), 0.5f);
     }
 
     public bool GetGameOver()
