@@ -210,14 +210,15 @@ public class BounceScript3D : MonoBehaviour {
             GetComponent<AudioSource>().PlayOneShot(vortexSound);
             enteredVortex = true;
             gameOver = true;
-            Invoke("EndLevel", 3);
+            Invoke("EndLevel", 5);
         }
     }
 
     void EndLevel()
     {
-        EndLevelOverlay.SetActive(true);
-        iTween.ScaleTo(EndLevelOverlay, new Vector3(1, 1, 1), 0.5f);
+        //EndLevelOverlay.SetActive(true);
+        //iTween.ScaleTo(EndLevelOverlay, new Vector3(1, 1, 1), 0.5f);
+        Application.LoadLevel(Application.loadedLevel + 1);
     }
 
     public bool GetGameOver()
